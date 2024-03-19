@@ -30,10 +30,15 @@ func main() {
 		var data Any
 		err = json.Unmarshal(fileContent, &data)
 		fmt.Println(data)
-		fmt.Print(data.Data[0].Id)
+		transform(data.Data)
 		if err != nil {
 
 		}
 	}
 
+}
+
+func transform(data []Bar) {
+	toWrite, _ := json.Marshal(data)
+	_ = ioutil.WriteFile("output.json", toWrite, 0644)
 }
