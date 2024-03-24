@@ -9,7 +9,8 @@ import (
 )
 
 type Bar struct {
-	Id string `json:"id"`
+	Id   string `json:"id"`
+	Name string `json:name`
 }
 type Any struct {
 	Data []Bar `json:"data"`
