@@ -8,3 +8,7 @@ Having modules for card rulings
 Errattas
 Having modules for transforming data
 Having modules for card analysis
+Deckbuilding
+Collection building
+Card replacement
+Magic like attributes for cards
