@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 type Pokemon struct {
@@ -31,7 +32,6 @@ func main() {
 		}
 		var data PokemonIn
 		err = json.Unmarshal(fileContent, &data)
-		fmt.Println(data)
 		transform(data.Data)
 		if err != nil {
 
@@ -41,6 +41,15 @@ func main() {
 }
 
 func transform(data []Pokemon) {
+	for _, pokemon := range data {
+		analyseArchetype((pokemon))
+	}
 	toWrite, _ := json.Marshal(data)
 	_ = ioutil.WriteFile("output.json", toWrite, 0644)
+}
+
+func analyseArchetype(pokemon Pokemon) {
+	if strings.Contains(pokemon.Name, "t") {
+		fmt.Println(pokemon.Name)
+	}
 }
