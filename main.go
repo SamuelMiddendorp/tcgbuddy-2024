@@ -8,12 +8,13 @@ import (
 	"os"
 )
 
-type Bar struct {
+type Pokemon struct {
 	Id   string `json:"id"`
 	Name string `json:name`
 }
-type Any struct {
-	Data []Bar `json:"data"`
+
+type PokemonIn struct {
+	Data []Pokemon `json:data`
 }
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 		if err != nil {
 
 		}
-		var data Any
+		var data PokemonIn
 		err = json.Unmarshal(fileContent, &data)
 		fmt.Println(data)
 		transform(data.Data)
@@ -39,7 +40,7 @@ func main() {
 
 }
 
-func transform(data []Bar) {
+func transform(data []Pokemon) {
 	toWrite, _ := json.Marshal(data)
 	_ = ioutil.WriteFile("output.json", toWrite, 0644)
 }
