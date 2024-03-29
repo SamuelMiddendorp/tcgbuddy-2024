@@ -9,13 +9,17 @@ import (
 	"strings"
 )
 
+type Archetype struct {
+	Name     string
+	Matchers []string
+}
 type Pokemon struct {
 	Id   string `json:"id"`
-	Name string `json:name`
+	Name string `json:"name"`
 }
 
 type PokemonIn struct {
-	Data []Pokemon `json:data`
+	Data []Pokemon `json:"data"`
 }
 
 func main() {
