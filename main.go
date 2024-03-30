@@ -14,12 +14,26 @@ type Archetype struct {
 	Matchers []string
 }
 type Pokemon struct {
-	Id   string `json:"id"`
-	Name string `json:"name"`
+	Id      string   `json:"id"`
+	Name    string   `json:"name"`
+	Attacks []Attack `json:"attacks"`
+}
+
+type Attack struct {
+	Text string `json:"text"`
 }
 
 type PokemonIn struct {
 	Data []Pokemon `json:"data"`
+}
+
+var archeTypes = []Archetype{
+	{
+		Name: "Confuse Attack",
+		Matchers: []string{
+			"the Defending Pokémon is now Confused.",
+		},
+	},
 }
 
 func main() {
@@ -53,7 +67,13 @@ func transform(data []Pokemon) {
 }
 
 func analyseArchetype(pokemon Pokemon) {
-	if strings.Contains(pokemon.Name, "t") {
-		fmt.Println(pokemon.Name)
+	for _, attack := range pokemon.Attacks {
+		for _, archetype := range archeTypes {
+			for _, matcher := range archetype.Matchers {
+				if strings.Contains(attack.Text, matcher) {
+					fmt.Println(attack)
+				}
+			}
+		}
 	}
 }
