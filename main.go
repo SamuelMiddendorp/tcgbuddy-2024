@@ -34,6 +34,12 @@ var archeTypes = []Archetype{
 			"the Defending Pokémon is now Confused.",
 		},
 	},
+	{
+		Name: "Chance",
+		Matchers: []string{
+			"Flip a coin",
+		},
+	},
 }
 
 func main() {
