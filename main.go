@@ -14,9 +14,10 @@ type Archetype struct {
 	Matchers []string
 }
 type Pokemon struct {
-	Id      string   `json:"id"`
-	Name    string   `json:"name"`
-	Attacks []Attack `json:"attacks"`
+	Id         string   `json:"id"`
+	Name       string   `json:"name"`
+	Attacks    []Attack `json:"attacks"`
+	Archetypes []string
 }
 
 type Attack struct {
@@ -38,6 +39,12 @@ var archeTypes = []Archetype{
 		Name: "Chance",
 		Matchers: []string{
 			"Flip a coin",
+		},
+	},
+	{
+		Name: "Sleep Attack",
+		Matchers: []string{
+			"The Defending Pokémon is now Asleep",
 		},
 	},
 }
@@ -65,21 +72,24 @@ func main() {
 }
 
 func transform(data []Pokemon) {
-	for _, pokemon := range data {
-		analyseArchetype((pokemon))
+	for index, pokemon := range data {
+		data[index].Archetypes = analyseArchetype((pokemon))
 	}
 	toWrite, _ := json.Marshal(data)
 	_ = ioutil.WriteFile("output.json", toWrite, 0644)
 }
 
-func analyseArchetype(pokemon Pokemon) {
+func analyseArchetype(pokemon Pokemon) []string {
+	var types = []string{}
+
 	for _, attack := range pokemon.Attacks {
 		for _, archetype := range archeTypes {
 			for _, matcher := range archetype.Matchers {
 				if strings.Contains(attack.Text, matcher) {
-					fmt.Println(attack)
+					types = append(types, archetype.Name)
 				}
 			}
 		}
 	}
+	return types
 }
