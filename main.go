@@ -47,6 +47,12 @@ var archeTypes = []Archetype{
 			"The Defending Pokémon is now Asleep",
 		},
 	},
+	{
+		Name: "Paralyze Attack",
+		Matchers: []string{
+			"The Defending Pokémon is now Paralyzed",
+		},
+	},
 }
 
 func main() {
