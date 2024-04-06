@@ -53,6 +53,12 @@ var archeTypes = []Archetype{
 			"The Defending Pokémon is now Paralyzed",
 		},
 	},
+	{
+		Name: "Block Attack",
+		Matchers: []string{
+			"prevent all damage done to",
+		},
+	},
 }
 
 func main() {
