@@ -59,6 +59,12 @@ var archeTypes = []Archetype{
 			"prevent all damage done to",
 		},
 	},
+	{
+		Name: "Move damage",
+		Matchers: []string{
+			"You may move 1 damage counter",
+		},
+	},
 }
 
 func main() {
