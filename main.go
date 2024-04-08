@@ -54,6 +54,12 @@ var archeTypes = []Archetype{
 		},
 	},
 	{
+		Name: "Poison Attack",
+		Matchers: []string{
+			"The Defending Pokémon is now Poisoned",
+		},
+	},
+	{
 		Name: "Block Attack",
 		Matchers: []string{
 			"prevent all damage done to",
